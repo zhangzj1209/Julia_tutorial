@@ -254,6 +254,7 @@ julia>
       sqrt(-2)
   catch
       println("只有非负数才能求平方根！")
+  end
   ```
 - **`try...finally`语句**  
   无论程序如何退出，`finally`语句总被执行。
@@ -264,6 +265,7 @@ julia>
       println("只有非负数才能求平方根！")
   finally
       println("我是finally语句！")
+  end
   ```
 
 
