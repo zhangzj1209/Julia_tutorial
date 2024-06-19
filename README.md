@@ -82,12 +82,12 @@ julia>
     ```
   - **i-search模式**：在Julia模式下同时按`Ctrl`键+`R`键可进入i-search模式（同时按`Ctrl`键+`C`键可退出i-search模式）。
   - **pacakge模式**：在Julia模式下键入`]`可进入pacakge模式（按`Backspace`可退出pacakge模式），可通过运行如下命令来管理Package：
-    - `help`：查看Package
-    - `status`：查看安装的Package列表
-    - `add xxx`：安装某个Package
-    - `build xxx`：使Package能够运行
-    - `update xxx`：更新Package到新版本
-    - `remove xxx`：删除Package
+    - `help`：查看Package。
+    - `status`：查看安装的Package列表。
+    - `add xxx`：安装某个Package。
+    - `build xxx`：使Package能够运行。
+    - `update xxx`：更新Package到新版本。
+    - `remove xxx`：删除Package。
 
 ### 1-5、REPL中的快捷键与注意事项
 - 同时按`Ctrl`键+`D`键或输入`exit()`可退出REPL。
@@ -648,9 +648,6 @@ using Dates
   Timestep  = Dates.Day(1)
   d = collect(Starttime:Timestep:Endtime)
   ```
-
-
-## 10、Julia的并行计算
 
 
 
