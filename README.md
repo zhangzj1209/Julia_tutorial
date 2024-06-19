@@ -1,4 +1,33 @@
-# 《Julia 1.7 程序语言》
+# 《Julia 1.7.3 程序语言》
+
+## 0、Julia软件安装
+
+### 0-1、学习资源
+- Julia主网站：[https://julialang.org/](https://julialang.org)
+- Julia官方文档：[https://docs.julialang.org/en/v1/](https://docs.julialang.org/en/v1/)
+- Julia扩展包查找：[https://juliahub.com/ui/Packages](https://juliahub.com/ui/Packages)
+- 清华大学开源软件镜像网站：[https://mirror.tuna.tsinghua.edu.cn/help/julia/](https://help.mirrors.cernet.edu.cn/julia/)
+
+### 0-2、Julia命令行程序的安装和使用
+- 下载和解压`julia`软件包
+  ```bash
+  wget https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.3-linux-x86_64.tar.gz
+  tar zxvf julia-1.7.3-linux-x86_64.tar.gz
+  ```
+
+- 添加**环境变量**
+  ```bash
+  vim ~/.bashrc
+  export PATH="$PATH:/data/ustc/julia-1.7.3/bin"
+  source ~/.bashrc
+  ```
+
+- 将`Julia`添加到`Jupyter Notebook`
+  ```julia
+  import Pkg
+  Pkg.add("IJulia")
+  ```
+
 
 ## 1、概述
 
