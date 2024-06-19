@@ -19,7 +19,7 @@ julia>
 ```
 
 ### 1-2、`julia`基本命令
-- 查看`julia`的配置情况
+- 查看`julia`的配置情况：
   ```julia
   julia> versioninfo()
   ```
@@ -35,7 +35,7 @@ julia>
   ```
 
 ### 1-3、利用REPL执行源文件
-- `julia`源程序用`.jl`作为扩展名，运行当前目录下的`my_program.jl`：
+- `julia`源程序用`.jl`作为扩展名，运行**当前目录下**的`my_program.jl`：
   ```julia
   julia> include("my_program.jl")
   ```
@@ -49,7 +49,7 @@ julia>
     ```
   - **Shell模式**：在Julia模式下键入`;`可进入Shell模式（按`Backspace`可退出Shell模式）。如在`shell>`后输入：
     ```julia
-    cd /data/ustc
+    cd /data/ustc/
     ```
   - **i-search模式**：在Julia模式下同时按`Ctrl`键+`R`键可进入i-search模式（同时按`Ctrl`键+`C`键可退出i-search模式）。
   - **pacakge模式**：在Julia模式下键入`]`可进入pacakge模式（按`Backspace`可退出pacakge模式），可通过运行如下命令来管理Package：
@@ -126,7 +126,7 @@ julia>
 
 ### 2-4、数学函数
 - 常见等数学函数有：`log`，`exp`，`sqrt`，`sin`，`cos`，`tan`等。
-- `divrem(x, y)`：同时返回`x`除以`y`等商和余数。
+- `divrem(x, y)`：同时返回`x`除以`y`的商和余数。
 - `round(Int, x)`将`x`四舍五入到整数，`round(x, digits=2)`将`x`四舍五入到2位小数，`round(x)`将`x`四舍五入到0位小数的浮点数。
 - `floor(Int, x)`求小于等于`x`的最大整数，`floor(x)`返回小于等于`x`的最大整数对应的浮点值。
 - `ceil(Int, x)`求大于等于`x`的最大整数，`ceil(x)`返回大于等于`x`的最大整数对应的浮点值。
@@ -272,7 +272,7 @@ julia>
   | - | - |
   | `println()` | 打印（结束自动换行） |
   | `readline()` | 读取一行 |
-  | `readlines()` | 读取所有行为一个数组 |
+  | `readlines()` | 读取所有行成为一个数组 |
 
 - **数学函数**
   | 数学函数 | 意义（返回值） |
@@ -282,7 +282,7 @@ julia>
   | `ceil(x)` | 返回数字的上入整数，如`ceil(4.1)`返回5 |
   | `trunc(x)` | 返回数字的向0整数，如`ceil(2.3)`返回2 |
   | `gcd(x,y...)` | 返回x,y,...的最大公约数 |
-  | `lcm(x,y...)` | 返回x,y,...的最小共倍数 |
+  | `lcm(x,y...)` | 返回x,y,...的最小公倍数 |
   | `cos(x)` | 返回x弧度的余弦值 |
   | `sin(x)` | 返回x弧度的正弦值 |
   | `abs(x)` | 返回数字的绝对值 |
@@ -317,7 +317,7 @@ julia>
 ### 5-2、自定义函数
 - **`julia`自定义函数的规则**：
   - 函数代码块以`function`关键词开头，后接函数标识符名称和圆括号`()`；
-  - 任何传入参数和自变量必须放在园括号中；
+  - 任何传入参数和自变量必须放在圆括号中；
   - 函数返回值默认最后一个表达式的值，若不想有返回值，则在最后一行加`nothing`；
   - 一旦运行`return`语句，其后的语句不再运行；
   - 函数结束的标志为`end`。
@@ -367,7 +367,7 @@ julia>
 
 
 ## 6、特征数据类型
-#### 6-1、数组
+### 6-1、数组
 - **创建数组**
   ```julia
   array1 = [1, 3, 5, 7]
@@ -379,22 +379,249 @@ julia>
   ```
   使用`push!(array1, 20)`可在数组后添加新数组项。
 
-- **删除数组**
+- **删除数组**  
   使用`deleteat!(array1, 3)`可删除数组的第三个数字。
 
-#### 6-2、元组
+### 6-2、元组
 - **定义元组**
   ```julia
-  tup1 = (1, 2, 3)
+  tup1 = (1, 2, 3)  # 当元组仅含一个元素时，需在元素后添加逗号
+  tup2 = ()         # 定义空元组
+  ```
+
+### 6-3、字典
+- **定义字典**
+  ```julia
+  dict1 = Dict("name"=>"zhang", "age"=>"10")
+  ```
+
+- **访问字典的值和键**
+  ```julia
+  println("Name: ", dict1["name"])
+  ```
+
+- **修改字典**
+  ```julia
+  dict1["age"] = "20"
+  ```
+
+### 6-4、集合
+- **定义集合**
+  ```julia
+  a = Set([1, 2, 3])
+  a = Set()          # 创建空集合
   ```
 
 
+## 7、矩阵操作
+### 7-1、矩阵的创建与索引
+- **创建矩阵**
+  ```julia
+  matrix1 = [1 2 3; 4 5 6]
+  matrix2 = rand(1:10, 3, 4)  # 创建3×4的随机矩阵
+  matrix3 = ones(4, 5)        # 创建全1矩阵
+  matrix4 = zeros(5, 6)       # 创建全0矩阵
+  ```
+
+### 7-2、矩阵的拼接
+- **横向拼接**
+  ```julia
+  a = ones(3, 2)
+  b = zeros(3, 2)
+  c = [a b]  或  c = hcat([a, b]...)
+  ```
+
+- **纵向拼接**
+  ```julia
+  a = ones(3, 2)
+  b = zeros(3, 2)
+  c = [a; b]  或  c = vcat([a, b]...)
+  ```
+
+### 7-3、矩阵的运算
+- **矩阵加法、矩阵减法**
+  ```julia
+  A = rand(2, 3)
+  B = rand(2, 3)
+  C = A + B
+  D = A - B
+  ```
+
+- **矩阵转置**
+  ```julia
+  A = rand(2, 3)
+  B = A'
+  ```
+
+- **矩阵数乘**
+  ```julia
+  A = rand(2, 3)
+  B = 3 * A
+  ```
+
+- **矩阵乘法**
+  ```julia
+  A = rand(2, 3)
+  B = rand(3, 4)
+  C = A * B
+  ```
+
+### 7-4、矩阵的函数应用
+- **矩阵的基本函数**
+  - `typeof()`：矩阵的类型。
+  - `eltype()`：矩阵中元素的类型。
+  - `length()`：矩阵中元素的个数。
+  - `ndims()`：矩阵的维度。
+  - `size()`：矩阵的行数和列数。
+
+- **矩阵的其它创建函数**
+  ```julia
+  a = trues(3, 4)       # 创建3×4的元素全true的矩阵
+  b = falses(3, 4)      # 创建3×4的元素全false的矩阵
+  c = reshape(a, 4, 3)  # 重新设置矩阵大小为4×3
+  d = copy(b)           # 复制矩阵
+  ```
+
+- **矩阵的函数运算**
+  ```julia
+  x1 = randn(6, 4)    # 创建一个正态分布矩阵
+  x2 = round.(x1)     # 对矩阵x1进行四舍五入运算，round与()之间加一个.表示对矩阵进行操作
+  x3 = abs.(x1)       # 对矩阵x1取绝对值
+  x4 = sqrt.(x3)      # 对矩阵x3取平方根
+  x5 = sin.(x1)       # 对矩阵x1进行正弦运算
+  ```
 
 
+## 8、文件操作
+### 8-1、文件的基本操作
+- **文件的创建**
+  ```julia
+  open(filename, keyword)  # filename为创建的文件名，kerword为创建文件的关键字
+  ```
+  `kerword`的参数及意义：
+  - `w`：打开文件只用于写入。若文件已存在，则删除原有内容并从头开始编辑。
+  - `w+`：打开文件用于读写。若文件已存在，则删除原有内容并从头开始编辑。
+  - `a`：打开文件用于追加。若文件已存在，则新内容将会被写入到已有内容之后。
+  - `a+`：打开文件用于读写。若文件已存在，则新内容将会被写入到已有内容之后。
+  - `r`：打开文件只读。
+  - `r+`：打开文件用于读写。
+
+- **写入文件内容**
+  ```julia
+  txt = open("myfile.txt", "w")
+  write(txt, "hello world!")
+  close(txt)
+  ```
+
+- **读取文件内容**
+  ```julia
+  readlines("mybook.txt")  # 读取打开文件中的所有内容
+  readline("mybook.txt")   # 读取打开文件的第一行
+  read("mybook.txt", String)
+  ```
+
+### 8-2、文件中的矩阵操作
+- **把矩阵写入文件**
+  ```julia
+  using DelimitedFiles
+  matrix1 = rand(1:100, 10, 8)
+  mya = open("my_matrix.txt", "w")
+  writedlm(mya, matrix1, "\t")
+  close(mya)
+  ```
+
+- **从文件中读取矩阵内容**
+  ```julia
+  using DelimitedFiles
+  myb = open("my_matrix.txt", "r")
+  readdlm(myb)
+  ```
+
+## 9、Julia的日期和时间
+```julia
+using Dates
+```
+
+### 9-1、`Date()`函数
+- **创建日期的方式**
+  ```julia
+  my_t = Date(2019,4,11)       # 2019-04-11 
+  ```
+
+- **获取创建日期的年、月、日信息**
+  ```julia
+  t = Date(2019,4,11)          # 2019-04-11
+  y = Dates.year(t)            # 2019
+  m = Dates.month(t)           # 4
+  d = Dates.day(t)             # 11
+
+  ym = Dates.yearmonth(t)      # (2019, 4)
+  md = Dates.monthday(t)       # (4, 11)
+  ymd = Dates.yearmonthday(t)  # (2019, 4, 11)
+
+  Y = Dates.Year(t)            # 2019 years
+  M = Dates.Month(t)           # 4 months
+  D = Dates.Day(t)             # 11 days
+  ```
+
+- **获取星期几的信息**
+  ```julia
+  t = Date(2019,4,11)          # 2019-04-11
+  w = Dates.dayofweek(t)       # 4
+  we = Dates.dayname(t)        # Thursday
+  ```
+
+- **获取月份的信息**
+  ```julia
+  t = Date(2019,4,11)          # 2019-04-11
+  m = Dates.month(t)           # 4
+  me = Dates.monthname(t)      # April
+  ```
+
+- **获取年份和季节信息**
+  ```julia
+  t = Date(2019,4,11)          # 2019-04-11
+  x1 = Dates.dayofyear(t)      # 101   (该日期为整年的第101天)
+  x2 = Dates.isleapyear(t)     # false (该年不是闰年)
+  x3 = Dates.quarterofyear(t)  # 2     (该日期在第2季度)
+  ```
+
+### 9-2、`DateTime()`函数
+- **创建日期时间的方式**
+  ```julia
+  t = DateTime(2019,4,11,12,5,3,2)  # 2019-04-11T12:05:03.002
+  ```
+
+- **获取日期时间的信息**
+  ```julia
+  t = DateTime(2019,4,11,12,5,3,2)  # 2019-04-11T12:05:03.002
+  y = Dates.year(t)                 # 2019
+  m = Dates.month(t)                # 4
+  d = Dates.day(t)                  # 11
+  H = Dates.hour(t)                 # 12
+  M = Dates.minute(t)               # 5
+  S = Dates.second(t)               # 3
+  MS = Dates.millisecond(t)         # 2
+  ```
+
+### 9-3、时间运算
+- **`Date()`函数和`DateTime()`函数的运算**
+  ```julia
+  t = DateTime(2019,4,11,12,5,3,2)  # 2019-04-11T12:05:03.002
+  t1 = t + Dates.Hour(2)            # 2019-04-11T14:05:03.002
+  ```
+
+### 9-4、时间序列
+- **时间序列实例**
+  ```julia
+  Starttime = Date(2018,1,1)
+  Endtime   = Date(2018,1,31)
+  Timestep  = Dates.Day(1)
+  d = collect(Starttime:Timestep:Endtime)
+  ```
 
 
-
-
+## 10、Julia的并行计算
 
 
 
