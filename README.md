@@ -357,6 +357,12 @@ julia>
       函数体
   end
   ```
+  - 函数定义时可指定其参数类型。
+  ```julia
+  function ff(x::Int8)
+      x + 1
+  end
+  ```
 
 - **函数调用**
 
@@ -373,8 +379,25 @@ julia>
   end
   ```
   则通过`include("julia_test_5_2.jl")`可调用该函数。
+
+### 5-3、方法
+- **同样的函数，可以有不同的方法**，比如加法函数可以实现**整数加法，浮点数加法和复数加法**等。
+  ```julia
+  function f_plus(x::Int64, y::Int64)
+      x + y
+  end
+  ```
+  ```julia
+  function f_plus(x::Float64, y::Float64)
+      x + y
+  end
+  ```
+  ```julia
+  >>f_plus (generic function with 2 methods)
+  ```
+  此时执行`f_plus(2, 3)`编译器会自动选择更加专用的方法来执行（此处为第一个方法）。
   
-### 5-3、模块
+### 5-4、模块
 模块是一个包含所有定义的函数和变量的文件。
 
 - **模块定义**
